@@ -18,4 +18,5 @@ jobs:
         node-version: 22
     - name: Istall dependencies
       run: npm install
+    - run: npm run test
 
