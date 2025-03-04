@@ -8,12 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_test:
+  build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
 
     steps:
     - name: Checkout the code
@@ -21,7 +17,20 @@ jobs:
     - name: Istall Node.js 22
       uses: actions/setup-node@v4
       with:
-        node-version: ${{matrix.node-version}}
+        node-version: 22
+    - name: Istall dependencies
+      run: npm install
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v4
+    - name: Istall Node.js 22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
     - name: Istall dependencies
       run: npm install
     - name: Execute integration tests
